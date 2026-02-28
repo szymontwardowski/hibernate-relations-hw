@@ -24,10 +24,14 @@ public class ActorDaoImpl extends AbstractDao implements ActorDao {
             transaction.commit();
             return actor;
         } catch (Exception e) {
-            if (transaction != null) transaction.rollback();
+            if (transaction != null) {
+                transaction.rollback();
+            }
             throw new DataProcessingException("Can't insert actor: " + actor, e);
         } finally {
-            if (session != null) session.close();
+            if (session != null) {
+                session.close();
+            }
         }
     }
 

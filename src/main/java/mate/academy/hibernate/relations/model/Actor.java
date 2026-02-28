@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne; // (Narzędzie: do łączenia wielu aktorów z jednym krajem)
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "actors")
 public class Actor implements Cloneable {
