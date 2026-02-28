@@ -1,6 +1,10 @@
 package mate.academy.hibernate.relations;
 
 import java.util.List;
+
+import mate.academy.hibernate.relations.dao.ActorDao;
+import mate.academy.hibernate.relations.dao.CountryDao;
+import mate.academy.hibernate.relations.dao.MovieDao;
 import mate.academy.hibernate.relations.dao.impl.ActorDaoImpl;
 import mate.academy.hibernate.relations.dao.impl.CountryDaoImpl;
 import mate.academy.hibernate.relations.dao.impl.MovieDaoImpl;
@@ -20,11 +24,15 @@ public class Main {
     public static void main(String[] args) {
         final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-        // Dodaj słowo 'final' przed każdym serwisem:
-        final CountryService countryService = new CountryServiceImpl(new CountryDaoImpl(sessionFactory));
-        final ActorService actorService = new ActorServiceImpl(new ActorDaoImpl(sessionFactory));
-        final MovieService movieService = new MovieServiceImpl(new MovieDaoImpl(sessionFactory));
+        // Zamiast jednej długiej linii, rozbij to na dwa etapy:
+        final CountryDao countryDao = new CountryDaoImpl(sessionFactory);
+        final CountryService countryService = new CountryServiceImpl(countryDao);
 
+        final ActorDao actorDao = new ActorDaoImpl(sessionFactory);
+        final ActorService actorService = new ActorServiceImpl(actorDao);
+
+        final MovieDao movieDao = new MovieDaoImpl(sessionFactory);
+        final MovieService movieService = new MovieServiceImpl(movieDao);
         // Teraz te wywołania mogą zostać tam, gdzie były:
         Country usa = new Country("USA");
         countryService.add(usa);
