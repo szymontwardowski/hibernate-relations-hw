@@ -18,15 +18,14 @@ import org.hibernate.SessionFactory;
 
 public class Main {
     public static void main(String[] args) {
-        // 1. Pobieramy fabrykę sesji
-        SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+        final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
-        // 2. Inicjalizujemy serwisy (wstrzykujemy im odpowiednie DAO)
-        CountryService countryService = new CountryServiceImpl(new CountryDaoImpl(sessionFactory));
-        ActorService actorService = new ActorServiceImpl(new ActorDaoImpl(sessionFactory));
-        MovieService movieService = new MovieServiceImpl(new MovieDaoImpl(sessionFactory));
+        // Dodaj słowo 'final' przed każdym serwisem:
+        final CountryService countryService = new CountryServiceImpl(new CountryDaoImpl(sessionFactory));
+        final ActorService actorService = new ActorServiceImpl(new ActorDaoImpl(sessionFactory));
+        final MovieService movieService = new MovieServiceImpl(new MovieDaoImpl(sessionFactory));
 
-        // 3. Tworzymy i zapisujemy przykładowe dane
+        // Teraz te wywołania mogą zostać tam, gdzie były:
         Country usa = new Country("USA");
         countryService.add(usa);
 
@@ -38,7 +37,6 @@ public class Main {
         fastAndFurious.setActors(List.of(vinDiesel));
         movieService.add(fastAndFurious);
 
-        // 4. Testujemy pobieranie z bazy
         System.out.println("Pobrany film: " + movieService.get(fastAndFurious.getId()));
     }
 }
