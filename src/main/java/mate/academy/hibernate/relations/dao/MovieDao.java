@@ -4,7 +4,7 @@ import java.util.Optional;
 import mate.academy.hibernate.relations.model.Movie;
 
 public interface MovieDao {
-    Movie create(Movie movie);
+    Movie add(Movie movie);
 
     Optional<Movie> get(Long id);
 }

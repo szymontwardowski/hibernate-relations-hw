@@ -14,7 +14,7 @@ public class ActorDaoImpl extends AbstractDao implements ActorDao {
     }
 
     @Override
-    public Actor create(Actor actor) {
+    public Actor add(Actor actor) {
         Session session = null;
         Transaction transaction = null;
         try {

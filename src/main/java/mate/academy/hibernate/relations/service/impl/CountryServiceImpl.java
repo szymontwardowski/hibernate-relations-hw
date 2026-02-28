@@ -14,7 +14,7 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public Country add(Country country) {
-        return countryDao.create(country);
+        return countryDao.add(country);
     }
 
     @Override

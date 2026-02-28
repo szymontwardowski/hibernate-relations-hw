@@ -4,7 +4,7 @@ import java.util.Optional;
 import mate.academy.hibernate.relations.model.Actor;
 
 public interface ActorDao {
-    Actor create(Actor actor);
+    Actor add(Actor actor);
 
     Optional<Actor> get(Long id);
 }
