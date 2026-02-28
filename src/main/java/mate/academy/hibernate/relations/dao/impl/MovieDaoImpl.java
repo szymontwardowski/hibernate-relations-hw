@@ -11,7 +11,7 @@ public class MovieDaoImpl extends AbstractDao implements MovieDao {
     }
 
     @Override
-    public Movie add(Movie movie) {
+    public Movie create(Movie movie) {
         return null;
     }
 
